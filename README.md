@@ -22,6 +22,8 @@ Personal project hub. Here are my projects:
 - **Prevent Sleep** — Prevent the phone screen from sleeping during mirroring
 - **Stop on Disconnect** — Automatically stop mirroring when Android Auto disconnects
 - **Auto Launch App** — Automatically launch a chosen app on the phone when mirroring starts and Android Auto is connected
+- **Force Landscape** — Force the phone into landscape while mirroring; auto-starts on connect, with an on-screen toggle
+- **Launch Shortcuts** — Add up to 4 app quick-launch buttons to the Android Auto mirror screen
 - **Touch Forwarding** *(Experimental)* — Tap/scroll/fling the AA display to control your phone
 
 ### Requirements
