@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LZN (slzn) — Software Projects</title>
+<meta name="description" content="Personal site of slzn — home of ScreenOnAuto (mirror your Android phone screen to Android Auto) and other software projects.">
+<link rel="canonical" href="https://lzn.idv.tw/">
+<link rel="icon" type="image/png" href="images/icon_launcher.png">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://lzn.idv.tw/">
+<meta property="og:title" content="LZN (slzn) — Software Projects">
+<meta property="og:description" content="Home of ScreenOnAuto (Android Auto screen mirroring) and other software projects.">
+<meta property="og:image" content="https://lzn.idv.tw/images/screenshot-legacy-split.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "slzn",
+  "alternateName": "LZN",
+  "url": "https://lzn.idv.tw/",
+  "sameAs": ["https://github.com/slzn"]
+}
+</script>
+
+<style>
+:root {
+  --bg: #ffffff; --bg-alt: #f5f7fa; --text: #1c2733; --muted: #5b6b7b;
+  --accent: #2f7d4f; --accent-text: #ffffff; --border: #dde4ec;
+  --card: #ffffff;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12181f; --bg-alt: #1a222c; --text: #e5ecf3; --muted: #94a4b4;
+    --accent: #46a06c; --accent-text: #0d1117; --border: #2c3844;
+    --card: #1e2833;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font: 16px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+a { color: var(--accent); }
+img { max-width: 100%; height: auto; }
+.wrap { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+header.hero { background: var(--bg-alt); border-bottom: 1px solid var(--border); padding: 56px 0 44px; text-align: center; }
+.hero h1 { font-size: 2.6rem; margin: 0 0 10px; letter-spacing: -1px; }
+.hero p { font-size: 1.15rem; color: var(--muted); margin: 0; }
+main { padding: 36px 0 10px; }
+.project {
+  display: grid; grid-template-columns: 1fr; gap: 18px;
+  background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+  padding: 24px; margin-bottom: 24px;
+}
+.project.has-shot { grid-template-columns: 1.2fr 1fr; align-items: center; }
+@media (max-width: 640px) { .project.has-shot { grid-template-columns: 1fr; } }
+.project h2 { margin: 0 0 6px; font-size: 1.45rem; letter-spacing: -0.3px; display: flex; align-items: center; gap: 10px; }
+.project h2 img { width: 34px; height: 34px; border-radius: 8px; }
+.project .desc { color: var(--muted); margin: 0 0 14px; }
+.project .tags { margin: 0 0 16px; }
+.tag {
+  display: inline-block; font-size: 0.78rem; padding: 2px 10px; border-radius: 999px;
+  background: var(--bg-alt); border: 1px solid var(--border); color: var(--muted); margin: 0 6px 6px 0;
+}
+.links a.btn {
+  display: inline-block; padding: 9px 18px; border-radius: 9px; text-decoration: none;
+  font-weight: 600; border: 1px solid var(--accent); margin: 0 10px 8px 0; font-size: 0.95rem;
+}
+.btn.primary { background: var(--accent); color: var(--accent-text); }
+.btn.secondary { color: var(--accent); background: transparent; }
+.shot img { border-radius: 10px; box-shadow: 0 4px 18px rgba(0,0,0,0.15); }
+footer { border-top: 1px solid var(--border); margin-top: 40px; padding: 26px 0 38px; color: var(--muted); font-size: 0.9rem; text-align: center; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>LZN</h1>
+    <p>Personal project hub — software by <a href="https://github.com/slzn">slzn</a>.</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="project has-shot">
+    <div>
+      <h2><img src="images/icon_launcher.png" alt="">ScreenOnAuto</h2>
+      <p class="desc">Mirror your Android phone screen to the Android&nbsp;Auto display, with media controls, touch forwarding and auto-start. Free — no paid features.</p>
+      <p class="tags"><span class="tag">Android</span><span class="tag">Android Auto</span><span class="tag">Screen mirroring</span></p>
+      <p class="links">
+        <a class="btn primary" href="https://screenonauto.lzn.idv.tw/">Official site</a>
+        <a class="btn secondary" href="https://github.com/slzn/ScreenOnAuto-releases">GitHub</a>
+      </p>
+    </div>
+    <figure class="shot">
+      <a href="https://screenonauto.lzn.idv.tw/"><img src="images/screenshot-legacy-split.png" alt="Phone screen mirrored on the Android Auto display, side-by-side with the map"></a>
+    </figure>
+  </section>
+
+  <section class="project">
+    <div>
+      <h2>TshockLogs_Explosives</h2>
+      <p class="desc">A TShock server plugin for Terraria that monitors and logs explosive item usage by players — timestamped entries with player name and coordinates, handy for tracking griefing. Configurable via a JSON file.</p>
+      <p class="tags"><span class="tag">Terraria</span><span class="tag">TShock plugin</span><span class="tag">C#</span></p>
+      <p class="links">
+        <a class="btn secondary" href="https://github.com/slzn/TshockLogs_Explosives">GitHub</a>
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><a href="https://github.com/slzn">github.com/slzn</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
