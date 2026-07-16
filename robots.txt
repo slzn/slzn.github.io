@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://slzn.github.io/sitemap.xml
+Sitemap: https://slzn.github.io/ScreenOnAuto-releases/sitemap.xml
