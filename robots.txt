@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://slzn.github.io/sitemap.xml
-Sitemap: https://slzn.github.io/ScreenOnAuto-releases/sitemap.xml
+Sitemap: https://lzn.idv.tw/sitemap.xml
+Sitemap: https://lzn.idv.tw/ScreenOnAuto-releases/sitemap.xml
