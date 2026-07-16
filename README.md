@@ -11,7 +11,7 @@ Personal project hub. Here are my projects:
 **How to install depends on your Android version:**
 
 - **Android 13 and below** — sideload the APK (see the repository for steps), or join the Play beta.
-- **Android 14 and above** — install via the **Play Store beta** by [joining the tester list](https://github.com/slzn/ScreenOnAuto-releases/wiki/Join-the-Beta-Test).
+- **Android 14 and above** — install via the **Play Store beta** by [joining the tester list](https://screenonauto.lzn.idv.tw/docs/en/join-the-beta-test/).
 
 ### Features
 
@@ -34,7 +34,7 @@ Personal project hub. Here are my projects:
 
 Free to use. No features require additional payment.
 
-[View Repository](https://github.com/slzn/ScreenOnAuto-releases)
+[Official Site](https://screenonauto.lzn.idv.tw/) · [View Repository](https://github.com/slzn/ScreenOnAuto-releases)
 
 ---
 
