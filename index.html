@@ -25,98 +25,196 @@
 }
 </script>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
 <style>
+/* Night-drive palette: dark is the default, light is the override. */
 :root {
-  --bg: #ffffff; --bg-alt: #f5f7fa; --text: #1c2733; --muted: #5b6b7b;
-  --accent: #2f7d4f; --accent-text: #ffffff; --border: #dde4ec;
-  --card: #ffffff;
+  --bg: #0f151c; --bg-raise: #151d26; --text: #e9eff5; --muted: #90a2b3;
+  --line: #232f3b; --accent: #4cb578; --accent-ink: #081009; --amber: #d9a441;
+  --panel: #0a0e13; --panel-line: #263340; /* "screen" surfaces stay dark in both themes */
+  --shadow: 0 24px 64px rgba(0, 0, 0, 0.45);
 }
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
-    --bg: #12181f; --bg-alt: #1a222c; --text: #e5ecf3; --muted: #94a4b4;
-    --accent: #46a06c; --accent-text: #0d1117; --border: #2c3844;
-    --card: #1e2833;
+    --bg: #f3f5f7; --bg-raise: #ffffff; --text: #1a242e; --muted: #5a6b7a;
+    --line: #dce3ea; --accent: #2f7d4f; --accent-ink: #ffffff; --amber: #a97a1e;
+    --shadow: 0 20px 48px rgba(23, 34, 45, 0.18);
   }
 }
+
 * { box-sizing: border-box; }
 body {
   margin: 0; background: var(--bg); color: var(--text);
   font: 16px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 a { color: var(--accent); }
-img { max-width: 100%; height: auto; }
-.wrap { max-width: 860px; margin: 0 auto; padding: 0 20px; }
-header.hero { background: var(--bg-alt); border-bottom: 1px solid var(--border); padding: 56px 0 44px; text-align: center; }
-.hero h1 { font-size: 2.6rem; margin: 0 0 10px; letter-spacing: -1px; }
-.hero p { font-size: 1.15rem; color: var(--muted); margin: 0; }
-main { padding: 36px 0 10px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+img { max-width: 100%; height: auto; display: block; }
+.wrap { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+.mono { font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
+/* ---- hero ---- */
+header.hero { padding: 88px 0 64px; position: relative; overflow: hidden; }
+header.hero::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(560px 300px at 18% 38%, rgba(76, 181, 120, 0.07), transparent 70%);
+}
+.hero .eyebrow {
+  font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.82rem;
+  color: var(--muted); letter-spacing: 0.08em; margin: 0 0 14px;
+}
+.hero h1 {
+  font-family: "Chakra Petch", system-ui, sans-serif; font-weight: 700;
+  font-size: clamp(3.2rem, 9vw, 5.2rem); line-height: 1; letter-spacing: 0.01em;
+  margin: 0 0 18px; display: flex; align-items: baseline;
+}
+.hero h1 .cursor {
+  display: inline-block; width: 0.16em; height: 0.82em; margin-left: 0.14em;
+  background: var(--accent); align-self: center;
+  animation: blink 1.2s steps(1) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+.hero .lede { font-size: 1.15rem; color: var(--text); margin: 0 0 6px; max-width: 34em; }
+.hero .tagline { font-size: 1rem; color: var(--muted); margin: 0; max-width: 36em; }
+
+/* ---- section label ---- */
+.section-label {
+  display: flex; align-items: center; gap: 16px; margin: 0 0 40px;
+  font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.8rem;
+  letter-spacing: 0.22em; color: var(--muted);
+}
+.section-label::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+/* ---- projects ---- */
+main { padding: 8px 0 32px; }
 .project {
-  display: grid; grid-template-columns: 1fr; gap: 18px;
-  background: var(--card); border: 1px solid var(--border); border-radius: 14px;
-  padding: 24px; margin-bottom: 24px;
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
+  gap: 44px; align-items: center; padding: 36px 0;
 }
-.project.has-shot { grid-template-columns: 1.2fr 1fr; align-items: center; }
-@media (max-width: 640px) { .project.has-shot { grid-template-columns: 1fr; } }
-.project h2 { margin: 0 0 6px; font-size: 1.45rem; letter-spacing: -0.3px; display: flex; align-items: center; gap: 10px; }
-.project h2 img { width: 34px; height: 34px; border-radius: 8px; }
-.project .desc { color: var(--muted); margin: 0 0 14px; }
-.project .tags { margin: 0 0 16px; }
-.tag {
-  display: inline-block; font-size: 0.78rem; padding: 2px 10px; border-radius: 999px;
-  background: var(--bg-alt); border: 1px solid var(--border); color: var(--muted); margin: 0 6px 6px 0;
+.project + .project { border-top: 1px solid var(--line); }
+.project:nth-of-type(even) .visual { order: -1; }
+.project .eyebrow {
+  font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.75rem;
+  letter-spacing: 0.14em; color: var(--amber); margin: 0 0 10px;
 }
-.links a.btn {
-  display: inline-block; padding: 9px 18px; border-radius: 9px; text-decoration: none;
-  font-weight: 600; border: 1px solid var(--accent); margin: 0 10px 8px 0; font-size: 0.95rem;
+.project h2 {
+  font-family: "Chakra Petch", system-ui, sans-serif; font-weight: 600;
+  font-size: 1.65rem; letter-spacing: 0.01em; margin: 0 0 12px;
+  display: flex; align-items: center; gap: 12px; overflow-wrap: anywhere;
 }
-.btn.primary { background: var(--accent); color: var(--accent-text); }
+.project h2 img { width: 36px; height: 36px; border-radius: 9px; flex: none; }
+.project .desc { color: var(--muted); margin: 0 0 22px; }
+.links { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn {
+  display: inline-block; padding: 10px 20px; border-radius: 10px; text-decoration: none;
+  font-family: "Chakra Petch", system-ui, sans-serif; font-weight: 600; font-size: 0.95rem;
+  letter-spacing: 0.02em; border: 1px solid var(--accent);
+}
+.btn.primary { background: var(--accent); color: var(--accent-ink); }
 .btn.secondary { color: var(--accent); background: transparent; }
-.shot img { border-radius: 10px; box-shadow: 0 4px 18px rgba(0,0,0,0.15); }
-footer { border-top: 1px solid var(--border); margin-top: 40px; padding: 26px 0 38px; color: var(--muted); font-size: 0.9rem; text-align: center; }
+
+/* ---- "screen" panels: always dark, like the hardware they depict ---- */
+.visual { position: relative; }
+.screen {
+  position: relative; background: var(--panel); border: 1px solid var(--panel-line);
+  border-radius: 16px; padding: 12px; box-shadow: var(--shadow);
+}
+.screen::after { /* power LED */
+  content: ""; position: absolute; right: 14px; bottom: 6px;
+  width: 5px; height: 5px; border-radius: 50%; background: var(--amber);
+  box-shadow: 0 0 6px var(--amber);
+}
+.screen img { border-radius: 8px; }
+.screen figcaption {
+  font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.75rem;
+  color: var(--muted); padding: 10px 4px 2px;
+}
+figure.screen { margin: 0; }
+
+/* terminal-style screen for the plugin */
+.term {
+  font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.78rem; line-height: 1.9;
+  color: #9fb2a8; padding: 18px 18px 22px; overflow-x: auto; white-space: pre;
+}
+.term .t { color: #5f7386; }
+.term .i { color: #4cb578; }
+.term .dim { color: #55677a; }
+
+/* ---- footer ---- */
+footer {
+  border-top: 1px solid var(--line); margin-top: 40px; padding: 30px 0 44px;
+  font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.85rem; color: var(--muted);
+}
+footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+footer a { color: var(--muted); }
+footer a:hover { color: var(--accent); }
+
+@media (max-width: 720px) {
+  header.hero { padding: 64px 0 48px; }
+  .project { grid-template-columns: 1fr; gap: 26px; padding: 32px 0; }
+  .project:nth-of-type(even) .visual { order: 0; } /* text first on mobile */
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero h1 .cursor { animation: none; }
+}
 </style>
 </head>
 <body>
 
 <header class="hero">
   <div class="wrap">
-    <h1>LZN</h1>
-    <p>Personal project hub — software by <a href="https://github.com/slzn">Chih-En Liu (LZN)</a>.</p>
+    <p class="eyebrow">personal project hub</p>
+    <h1>LZN<span class="cursor" aria-hidden="true"></span></h1>
+    <p class="lede">Software by <a href="https://github.com/slzn">Chih-En Liu (slzn)</a>.</p>
+    <p class="tagline">Small, focused tools — built for problems I actually have.</p>
   </div>
 </header>
 
 <main class="wrap">
+  <p class="section-label">PROJECTS</p>
 
-  <section class="project has-shot">
+  <section class="project">
     <div>
+      <p class="eyebrow">ANDROID · ANDROID AUTO</p>
       <h2><img src="images/icon_launcher.png" alt="">ScreenOnAuto</h2>
       <p class="desc">Mirror your Android phone screen to the Android&nbsp;Auto display, with media controls, touch forwarding and auto-start. Free — no paid features.</p>
-      <p class="tags"><span class="tag">Android</span><span class="tag">Android Auto</span><span class="tag">Screen mirroring</span></p>
       <p class="links">
         <a class="btn primary" href="https://screenonauto.lzn.idv.tw/">Official site</a>
         <a class="btn secondary" href="https://github.com/slzn/ScreenOnAuto-releases">GitHub</a>
       </p>
     </div>
-    <figure class="shot">
+    <figure class="visual screen">
       <a href="https://screenonauto.lzn.idv.tw/"><img src="images/screenshot-legacy-split.png" alt="Phone screen mirrored on the Android Auto display, side-by-side with the map"></a>
+      <figcaption>phone screen → car display, side-by-side with the map</figcaption>
     </figure>
   </section>
 
   <section class="project">
     <div>
+      <p class="eyebrow">TERRARIA · TSHOCK PLUGIN · C#</p>
       <h2>TshockLogs_Explosives</h2>
       <p class="desc">A TShock server plugin for Terraria that monitors and logs explosive item usage by players — timestamped entries with player name and coordinates, handy for tracking griefing. Configurable via a JSON file.</p>
-      <p class="tags"><span class="tag">Terraria</span><span class="tag">TShock plugin</span><span class="tag">C#</span></p>
       <p class="links">
         <a class="btn secondary" href="https://github.com/slzn/TshockLogs_Explosives">GitHub</a>
       </p>
     </div>
+    <div class="visual screen" aria-hidden="true">
+      <div class="term"><span class="dim">[Server]</span> TshockLogs_Explosives loaded
+<span class="t">[21:04:37]</span> corvus used <span class="i">Dynamite</span> (4312, 588)
+<span class="t">[21:05:02]</span> corvus used <span class="i">Bomb</span> (4327, 590)
+<span class="t">[21:11:48]</span> miner42 used <span class="i">Sticky Bomb</span> (1876, 402)
+<span class="dim">→ tshock/logs/explosives.log</span></div>
+    </div>
   </section>
-
 </main>
 
 <footer>
   <div class="wrap">
-    <p><a href="https://github.com/slzn">github.com/slzn</a></p>
+    <a href="https://github.com/slzn">github.com/slzn</a>
+    <span>lzn.idv.tw</span>
   </div>
 </footer>
 
