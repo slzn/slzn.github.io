@@ -25,25 +25,42 @@
 }
 </script>
 
+<script>
+/* Apply saved theme before first paint; fall back to the system preference. */
+(function () {
+  var saved = localStorage.getItem("theme");
+  var light = matchMedia("(prefers-color-scheme: light)");
+  document.documentElement.dataset.theme =
+    (saved === "light" || saved === "dark") ? saved : (light.matches ? "light" : "dark");
+  light.addEventListener("change", function (e) {
+    if (!localStorage.getItem("theme"))
+      document.documentElement.dataset.theme = e.matches ? "light" : "dark";
+  });
+})();
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 
 <style>
-/* Night-drive palette: dark is the default, light is the override. */
+/* Night-drive palette. light-dark() resolves per color-scheme; the toggle pins
+   color-scheme via data-theme, otherwise the system preference applies. */
 :root {
-  --bg: #0f151c; --bg-raise: #151d26; --text: #e9eff5; --muted: #90a2b3;
-  --line: #232f3b; --accent: #4cb578; --accent-ink: #081009; --amber: #d9a441;
+  color-scheme: light dark;
+  --bg: light-dark(#f3f5f7, #0f151c);
+  --bg-raise: light-dark(#ffffff, #151d26);
+  --text: light-dark(#1a242e, #e9eff5);
+  --muted: light-dark(#5a6b7a, #90a2b3);
+  --line: light-dark(#dce3ea, #232f3b);
+  --accent: light-dark(#2f7d4f, #4cb578);
+  --accent-ink: light-dark(#ffffff, #081009);
+  --amber: light-dark(#a97a1e, #d9a441);
   --panel: #0a0e13; --panel-line: #263340; /* "screen" surfaces stay dark in both themes */
-  --shadow: 0 24px 64px rgba(0, 0, 0, 0.45);
+  --shadow: 0 22px 56px light-dark(rgba(23, 34, 45, 0.18), rgba(0, 0, 0, 0.45));
 }
-@media (prefers-color-scheme: light) {
-  :root {
-    --bg: #f3f5f7; --bg-raise: #ffffff; --text: #1a242e; --muted: #5a6b7a;
-    --line: #dce3ea; --accent: #2f7d4f; --accent-ink: #ffffff; --amber: #a97a1e;
-    --shadow: 0 20px 48px rgba(23, 34, 45, 0.18);
-  }
-}
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }
 
 * { box-sizing: border-box; }
 body {
@@ -55,6 +72,19 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 img { max-width: 100%; height: auto; display: block; }
 .wrap { max-width: 980px; margin: 0 auto; padding: 0 24px; }
 .mono { font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
+/* ---- theme toggle (shown only once JS has set data-theme) ---- */
+.theme-toggle {
+  position: fixed; top: 18px; right: 18px; z-index: 10;
+  width: 40px; height: 40px; border-radius: 10px; cursor: pointer; padding: 0;
+  border: 1px solid var(--line); background: var(--bg-raise); color: var(--muted);
+  display: none; align-items: center; justify-content: center;
+}
+:root[data-theme] .theme-toggle { display: flex; }
+.theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+.theme-toggle svg { width: 18px; height: 18px; display: none; }
+:root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+:root[data-theme="light"] .theme-toggle .icon-moon { display: block; }
 
 /* ---- hero ---- */
 header.hero { padding: 88px 0 64px; position: relative; overflow: hidden; }
@@ -164,6 +194,11 @@ footer a:hover { color: var(--accent); }
 </head>
 <body>
 
+<button class="theme-toggle" type="button" aria-label="Toggle light / dark theme">
+  <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M19.4 4.6l-1.8 1.8M6.4 17.6l-1.8 1.8"/></svg>
+  <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11z"/></svg>
+</button>
+
 <header class="hero">
   <div class="wrap">
     <p class="eyebrow">personal project hub</p>
@@ -217,6 +252,14 @@ footer a:hover { color: var(--accent); }
     <span>lzn.idv.tw</span>
   </div>
 </footer>
+
+<script>
+document.querySelector(".theme-toggle").addEventListener("click", function () {
+  var next = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+  document.documentElement.dataset.theme = next;
+  localStorage.setItem("theme", next);
+});
+</script>
 
 </body>
 </html>
