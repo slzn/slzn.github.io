@@ -157,7 +157,7 @@ main { padding: 8px 0 32px; }
   width: 5px; height: 5px; border-radius: 50%; background: var(--amber);
   box-shadow: 0 0 6px var(--amber);
 }
-.screen img { border-radius: 8px; }
+.screen img { border-radius: 8px; clip-path: inset(3px 0 0 0 round 8px); /* source screenshots carry a dashed artifact in their top pixel rows */ }
 .screen figcaption {
   font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.75rem;
   color: var(--muted); padding: 10px 4px 2px;
