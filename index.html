@@ -184,7 +184,8 @@ footer a:hover { color: var(--accent); }
 
 @media (max-width: 720px) {
   header.hero { padding: 64px 0 48px; }
-  .project { grid-template-columns: 1fr; gap: 26px; padding: 32px 0; }
+  /* minmax(0, …): a bare 1fr lets the no-wrap terminal widen the page instead of scrolling */
+  .project { grid-template-columns: minmax(0, 1fr); gap: 26px; padding: 32px 0; }
   .project:nth-of-type(even) .visual { order: 0; } /* text first on mobile */
 }
 @media (prefers-reduced-motion: reduce) {
