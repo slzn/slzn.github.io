@@ -6,35 +6,12 @@ Personal project hub. Here are my projects:
 
 ## ScreenOnAuto
 
-> Mirror your Android phone screen to Android Auto display, with support for media button controls.
+> Mirror your Android phone screen to the Android Auto display, with media controls, touch forwarding and auto-start. Free — no paid features.
 
-**How to install depends on your Android version:**
+- **Android 14 and above** — install through Google Play: [sign up for a half-hourly round](https://screenonauto.lzn.idv.tw/join/), then install within 25 minutes.
+- **Android 13 and below** — sideload the APK with KingInstaller, or use Google Play.
 
-- **Android 13 and below** — sideload the APK (see the repository for steps), or join the Play beta.
-- **Android 14 and above** — install via the **Play Store beta** by [joining the tester list](https://screenonauto.lzn.idv.tw/docs/en/join-the-beta-test/).
-
-### Features
-
-- **Screen Mirroring** — Real-time phone screen mirroring to the Android Auto head unit
-- **Media Session Proxy** — Control any phone media app from Android Auto's native media UI
-- **Auto Dim** — Automatically dim phone screen brightness during idle mirroring (15/30/60/120 s delay)
-- **Auto Start** — Begin mirroring automatically when Android Auto connects
-- **Prevent Sleep** — Prevent the phone screen from sleeping during mirroring
-- **Stop on Disconnect** — Automatically stop mirroring when Android Auto disconnects
-- **Auto Launch App** — Automatically launch a chosen app on the phone when mirroring starts and Android Auto is connected
-- **Force Landscape** — Force the phone into landscape while mirroring; auto-starts on connect, with an on-screen toggle
-- **Launch Shortcuts** — Add up to 4 app quick-launch buttons to the Android Auto mirror screen
-- **Touch Forwarding** *(Experimental)* — Tap/scroll/fling the AA display to control your phone
-
-### Requirements
-
-- Android 7.0 (API 24) or higher
-- Android Auto installed on phone
-- A vehicle supporting Android Auto
-
-Free to use. No features require additional payment.
-
-[Official Site](https://screenonauto.lzn.idv.tw/) · [View Repository](https://github.com/slzn/ScreenOnAuto-releases)
+Features, requirements and install steps: [Official site](https://screenonauto.lzn.idv.tw/) · [Repository](https://github.com/slzn/ScreenOnAuto-releases)
 
 ---
 
